@@ -16,7 +16,7 @@ GEM
       tzinfo (~> 1.1)
     concurrent-ruby (1.0.2)
     i18n (0.7.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     minitest-utils (0.3.1)
       minitest
     rake (11.3.0)
