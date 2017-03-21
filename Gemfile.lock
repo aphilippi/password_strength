@@ -2,14 +2,14 @@ PATH
   remote: .
   specs:
     password_strength (1.1.4)
-      activemodel (= 5.1.0.beta1)
+      activemodel (= 5.1.0.rc1)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (5.1.0.beta1)
-      activesupport (= 5.1.0.beta1)
-    activesupport (5.1.0.beta1)
+    activemodel (5.1.0.rc1)
+      activesupport (= 5.1.0.rc1)
+    activesupport (5.1.0.rc1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
