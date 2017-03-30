@@ -3,8 +3,9 @@ script: "bundle exec rake test"
 cache: bundler
 sudo: false
 rvm:
-  - '2.3.3'
-  - '2.2'
+  - '2.4.1'
+  - '2.3.4'
+  - '2.2.7'
   - '2.1'
 
 gemfile:
