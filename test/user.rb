@@ -4,10 +4,10 @@ class User
   attr_accessor :username, :password, :login, :email
 
   def initialize(attributes = {})
-    update_attributes(attributes)
+    update(attributes)
   end
 
-  def update_attributes(attributes = {})
+  def update(attributes = {})
     attributes.each {|name, value| public_send "#{name}=", value }
     valid?
   end
