@@ -20,7 +20,7 @@ GEM
     minitest (5.11.3)
     minitest-utils (0.4.4)
       minitest
-    rake (12.3.1)
+    rake (12.3.2)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
