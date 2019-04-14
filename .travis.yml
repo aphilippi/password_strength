@@ -1,7 +1,6 @@
 language: ruby
 script: "bundle exec rake test"
 cache: bundler
-sudo: false
 rvm:
   - '2.5.5'
   - '2.4.6'
