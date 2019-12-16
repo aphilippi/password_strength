@@ -19,7 +19,7 @@ GEM
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     minitest (5.13.0)
-    minitest-utils (0.4.4)
+    minitest-utils (0.4.6)
       minitest
     rake (13.0.1)
     thread_safe (0.3.6)
@@ -37,4 +37,4 @@ DEPENDENCIES
   rake
 
 BUNDLED WITH
-   2.1.0.pre.3
+   2.1.0
