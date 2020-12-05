@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "activemodel", "6.0.2.2"
+  s.add_dependency "activemodel", "6.1.0.rc2"
 
   s.add_development_dependency "rake"
   s.add_development_dependency "minitest"
