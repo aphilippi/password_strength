@@ -2,7 +2,7 @@
 
 Check password strength against several rules. Includes ActiveRecord/ActiveModel support.
 
-<a href="https://travis-ci.org/fnando/password_strength"><img src="https://travis-ci.org/fnando/password_strength.svg" alt="Build Status" /></a>
+<a href="https://travis-ci.com/jasnow/password_strength"><img src="https://travis-ci.com/jasnow/password_strength.svg" alt="Build Status" /></a>
 
 Validates the strength of a password according to several rules:
 
