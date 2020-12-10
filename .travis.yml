@@ -10,11 +10,5 @@ rvm:
   - '2.2.10'
   - '2.1.10'
 
-gemfile:
-  - gemfiles/am_3_2.gemfile
-  - gemfiles/am_4_0.gemfile
-  - gemfiles/am_4_1.gemfile
-  - gemfiles/am_4_2.gemfile
-
 notifications:
   email: false
