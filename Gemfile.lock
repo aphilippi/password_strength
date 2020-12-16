@@ -27,7 +27,6 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  ruby
   x86_64-darwin-16
 
 DEPENDENCIES
@@ -37,4 +36,4 @@ DEPENDENCIES
   rake
 
 BUNDLED WITH
-   2.2.0
+   2.2.1
