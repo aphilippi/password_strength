@@ -8,4 +8,4 @@ rvm:
   - '2.5.8'
 
 notifications:
-  email: false
+  email: true
