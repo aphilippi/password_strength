@@ -21,7 +21,7 @@ GEM
     minitest (5.14.2)
     minitest-utils (0.4.6)
       minitest
-    rake (13.0.2)
+    rake (13.0.3)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     zeitwerk (2.4.2)
