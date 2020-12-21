@@ -1,4 +1,5 @@
 language: ruby
+before_install: gem update --system
 script: "bundle exec rake test"
 cache: bundler
 rvm:
