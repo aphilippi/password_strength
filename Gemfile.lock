@@ -18,7 +18,7 @@ GEM
     concurrent-ruby (1.1.7)
     i18n (1.8.7)
       concurrent-ruby (~> 1.0)
-    minitest (5.14.2)
+    minitest (5.14.3)
     minitest-utils (0.4.6)
       minitest
     rake (13.0.3)
