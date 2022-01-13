@@ -18,7 +18,7 @@ GEM
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     minitest (5.15.0)
-    minitest-utils (0.4.6)
+    minitest-utils (0.4.7)
       minitest
     rake (13.0.6)
     tzinfo (2.0.4)
@@ -35,4 +35,4 @@ DEPENDENCIES
   rake
 
 BUNDLED WITH
-   2.3.4
+   2.3.5
