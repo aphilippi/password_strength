@@ -21,7 +21,7 @@ GEM
     minitest-utils (0.4.8)
       minitest
     rake (13.0.6)
-    tzinfo (2.0.4)
+    tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
 
 PLATFORMS
