@@ -2,22 +2,21 @@ module ActiveModel # :nodoc:
   module Validations # :nodoc:
     class StrengthValidator < EachValidator # :nodoc: all
       def initialize(options)
-        super(options.reverse_merge(:level => :good, :with => :username, :using => PasswordStrength::Base))
+        super(options.reverse_merge(level: :good, with: :username, using: PasswordStrength::Base))
       end
 
       def validate_each(record, attribute, value)
         return unless PasswordStrength.enabled
         strength = options[:using].new(record.send(options[:with]), value,
-          :exclude => options[:exclude],
-          :record => record
-        )
+          exclude: options[:exclude],
+          record: record)
         strength.test
         record.errors.add(attribute, :too_weak, **options) unless PasswordStrength.enabled && strength.valid?(level(record))
       end
 
       def check_validity!
         raise ArgumentError, "The :with option must be supplied" unless options.include?(:with)
-        raise ArgumentError, "The :exclude options must be an array of strings or a regular expression" if options[:exclude] && !options[:exclude].kind_of?(Array) && !options[:exclude].kind_of?(Regexp)
+        raise ArgumentError, "The :exclude options must be an array of strings or a regular expression" if options[:exclude] && !options[:exclude].is_a?(Array) && !options[:exclude].is_a?(Regexp)
         check_level_validity!(options[:level])
         super
       end
@@ -39,7 +38,6 @@ module ActiveModel # :nodoc:
           raise ArgumentError, "The :level option must be one of [:weak, :good, :strong], a proc or a lambda"
         end
       end
-
     end
 
     module ClassMethods

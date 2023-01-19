@@ -16,11 +16,10 @@ class TestPasswordStrength < Minitest::Test
   def test_deal_with_empty_password
     @strength = PasswordStrength.test("johndoe", "")
     assert @strength.weak?
-
   end
 
   def test_good_strength
-    @strength.instance_variable_set("@status", :good)
+    @strength.instance_variable_set(:@status, :good)
     assert @strength.good?
     assert @strength.valid?(:good)
     refute @strength.weak?
@@ -28,7 +27,7 @@ class TestPasswordStrength < Minitest::Test
   end
 
   def test_weak_strength
-    @strength.instance_variable_set("@status", :weak)
+    @strength.instance_variable_set(:@status, :weak)
     assert @strength.weak?
     assert @strength.valid?(:weak)
     refute @strength.good?
@@ -36,7 +35,7 @@ class TestPasswordStrength < Minitest::Test
   end
 
   def test_strong_strength
-    @strength.instance_variable_set("@status", :strong)
+    @strength.instance_variable_set(:@status, :strong)
     assert @strength.strong?
     assert @strength.valid?(:strong)
     assert @strength.valid?(:good)
@@ -94,71 +93,71 @@ class TestPasswordStrength < Minitest::Test
 
   def test_penalize_password_with_chars_only
     @strength.password = "abcdef"
-    assert_equal -15, @strength.score_for(:only_chars)
+    assert_equal(-15, @strength.score_for(:only_chars))
   end
 
   def test_penalize_password_with_numbers_only
     @strength.password = "12345"
-    assert_equal -15, @strength.score_for(:only_numbers)
+    assert_equal(-15, @strength.score_for(:only_numbers))
   end
 
   def test_penalize_password_equals_to_username
     @strength.username = "johndoe"
     @strength.password = "johndoe"
-    assert_equal -100, @strength.score_for(:username)
+    assert_equal(-100, @strength.score_for(:username))
   end
 
   def test_penalize_password_with_username
     @strength.username = "johndoe"
     @strength.password = "$1234johndoe^"
-    assert_equal -15, @strength.score_for(:username)
+    assert_equal(-15, @strength.score_for(:username))
   end
 
   def test_penalize_number_sequence
     @strength.password = "234"
-    assert_equal -15, @strength.score_for(:sequences)
+    assert_equal(-15, @strength.score_for(:sequences))
 
     @strength.password = "123123"
-    assert_equal -30, @strength.score_for(:sequences)
+    assert_equal(-30, @strength.score_for(:sequences))
   end
 
   def test_penalize_letter_sequence
     @strength.password = "abc"
-    assert_equal -15, @strength.score_for(:sequences)
+    assert_equal(-15, @strength.score_for(:sequences))
 
     @strength.password = "abcabc"
-    assert_equal -30, @strength.score_for(:sequences)
+    assert_equal(-30, @strength.score_for(:sequences))
   end
 
   def test_penalize_number_and_letter_sequence
     @strength.password = "123abc"
-    assert_equal -30, @strength.score_for(:sequences)
+    assert_equal(-30, @strength.score_for(:sequences))
 
     @strength.password = "123abc123abc"
-    assert_equal -60, @strength.score_for(:sequences)
+    assert_equal(-60, @strength.score_for(:sequences))
   end
 
   def test_penalize_same_letter_sequence
     @strength.password = "aaa"
-    assert_equal -30, @strength.score_for(:sequences)
+    assert_equal(-30, @strength.score_for(:sequences))
   end
 
   def test_penalize_same_number_sequence
     @strength.password = "111"
-    assert_equal -30, @strength.score_for(:sequences)
+    assert_equal(-30, @strength.score_for(:sequences))
   end
 
   def test_penalize_reversed_sequence
     @strength.password = "cba321"
-    assert_equal -30, @strength.score_for(:sequences)
+    assert_equal(-30, @strength.score_for(:sequences))
 
     @strength.password = "cba321cba321"
-    assert_equal -60, @strength.score_for(:sequences)
+    assert_equal(-60, @strength.score_for(:sequences))
   end
 
   def test_penalize_short_password
     @strength.password = "abc"
-    assert_equal -100, @strength.score_for(:password_size)
+    assert_equal(-100, @strength.score_for(:password_size))
   end
 
   def test_penalize_repetitions
@@ -166,7 +165,7 @@ class TestPasswordStrength < Minitest::Test
     # 3-chars: abc, bcd, cda, dab       (4 * 3 = 12)
     # 4-chars: abcd, bcda, cdab, dabc   (4 * 2 =  8)
     @strength.password = "abcdabcdabcd"
-    assert_equal -36, @strength.score_for(:repetitions)
+    assert_equal(-36, @strength.score_for(:repetitions))
   end
 
   def test_password_length
@@ -238,14 +237,14 @@ class TestPasswordStrength < Minitest::Test
   end
 
   def test_exclude_option_as_regular_expression
-    @strength = PasswordStrength.test("johndoe", "^Str0ng P4ssw0rd$", :exclude => /\s/)
+    @strength = PasswordStrength.test("johndoe", "^Str0ng P4ssw0rd$", exclude: /\s/)
     assert_equal :invalid, @strength.status
     assert @strength.invalid?
     refute @strength.valid?
   end
 
   def test_exclude_option_as_array
-    @strength = PasswordStrength.test("johndoe", "asdfasdfasdf", :exclude => ["asdf", "123"])
+    @strength = PasswordStrength.test("johndoe", "asdfasdfasdf", exclude: ["asdf", "123"])
     assert_equal :invalid, @strength.status
     assert @strength.invalid?
     refute @strength.valid?
@@ -256,12 +255,12 @@ class TestPasswordStrength < Minitest::Test
   end
 
   def test_reject_common_words
-    $BREAKPOINT = true
+    #    $BREAKPOINT = true
     password = PasswordStrength::Base.common_words.first
     @strength = PasswordStrength.test("johndoe", password)
     assert @strength.invalid?, "#{password} must be invalid"
     refute @strength.valid?
     assert_equal :invalid, @strength.status
-    $BREAKPOINT = false
+    #    $BREAKPOINT = false
   end
 end

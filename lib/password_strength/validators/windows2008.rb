@@ -13,10 +13,10 @@ module PasswordStrength
         return invalid! if password.size < 6
 
         variety = 0
-        variety += 1 if password =~ /[A-Z]/
-        variety += 1 if password =~ /[a-z]/
-        variety += 1 if password =~ /[0-9]/
-        variety += 1 if password =~ PasswordStrength::Base::SYMBOL_RE
+        variety += 1 if /[A-Z]/.match?(password)
+        variety += 1 if /[a-z]/.match?(password)
+        variety += 1 if /[0-9]/.match?(password)
+        variety += 1 if PasswordStrength::Base::SYMBOL_RE.match?(password)
 
         return invalid! if variety < 3
         return invalid! if password_contains_username?

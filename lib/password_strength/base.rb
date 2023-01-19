@@ -1,8 +1,8 @@
 module PasswordStrength
   class Base
     MULTIPLE_NUMBERS_RE = /\d.*?\d.*?\d/
-    MULTIPLE_SYMBOLS_RE = /[!@#\$%^&*?_~-].*?[!@#\$%^&*?_~-]/
-    SYMBOL_RE = /[!@#\$%^&*?_~-]/
+    MULTIPLE_SYMBOLS_RE = /[!@#$%^&*?_~-].*?[!@#$%^&*?_~-]/
+    SYMBOL_RE = /[!@#$%^&*?_~-]/
     UPPERCASE_LOWERCASE_RE = /([a-z].*[A-Z])|([A-Z].*[a-z])/
     INVALID = :invalid
     WEAK = :weak
@@ -16,14 +16,14 @@ module PasswordStrength
     attr_accessor :password
 
     # The score for the latest test. Will be +nil+ if the password has not been tested.
-    attr_reader   :score
+    attr_reader :score
 
     # The current test status. Can be +:weak+, +:good+, +:strong+ or +:invalid+.
-    attr_reader   :status
+    attr_reader :status
 
     # The ActiveRecord instance.
     # It only makes sense if you're creating a custom ActiveRecord validator.
-    attr_reader   :record
+    attr_reader :record
 
     # Set what characters cannot be present on password.
     # Can be a regular expression or array.
@@ -72,9 +72,9 @@ module PasswordStrength
     # Level can be +:weak+, +:good+ or +:strong+.
     def valid?(level = GOOD)
       case level
-      when STRONG then
+      when STRONG
         strong?
-      when GOOD then
+      when GOOD
         good? || strong?
       else
         !invalid?
@@ -139,38 +139,38 @@ module PasswordStrength
       score = 0
 
       case name
-      when :password_size then
-        if password.size < 6
-          score = -100
+      when :password_size
+        score = if password.size < 6
+          -100
         else
-          score = password.size * 4
+          password.size * 4
         end
-      when :numbers then
-        score = 5 if password =~ MULTIPLE_NUMBERS_RE
-      when :symbols then
-        score = 5 if password =~ MULTIPLE_SYMBOLS_RE
-      when :uppercase_lowercase then
-        score = 10 if password =~ UPPERCASE_LOWERCASE_RE
-      when :numbers_chars then
+      when :numbers
+        score = 5 if MULTIPLE_NUMBERS_RE.match?(password)
+      when :symbols
+        score = 5 if MULTIPLE_SYMBOLS_RE.match?(password)
+      when :uppercase_lowercase
+        score = 10 if UPPERCASE_LOWERCASE_RE.match?(password)
+      when :numbers_chars
         score = 15 if password =~ /[a-z]/i && password =~ /[0-9]/
-      when :numbers_symbols then
+      when :numbers_symbols
         score = 15 if password =~ /[0-9]/ && password =~ SYMBOL_RE
-      when :symbols_chars then
+      when :symbols_chars
         score = 15 if password =~ /[a-z]/i && password =~ SYMBOL_RE
-      when :only_chars then
-        score = -15 if password =~ /^[a-z]+$/i
-      when :only_numbers then
-        score = -15 if password =~ /^\d+$/
-      when :username then
+      when :only_chars
+        score = -15 if /^[a-z]+$/i.match?(password)
+      when :only_numbers
+        score = -15 if /^\d+$/.match?(password)
+      when :username
         if password == username
           score = -100
-        else
-          score = -15 if password =~ /#{Regexp.escape(username)}/
+        elsif /#{Regexp.escape(username)}/.match?(password)
+          score = -15
         end
-      when :sequences then
+      when :sequences
         score = -15 * sequences(password)
         score += -15 * sequences(password.to_s.reverse)
-      when :repetitions then
+      when :repetitions
         score += -(repetitions(password, 2) * 4)
         score += -(repetitions(password, 3) * 3)
         score += -(repetitions(password, 4) * 2)
@@ -206,8 +206,8 @@ module PasswordStrength
         @score = 0 if score < 0
         @score = 100 if score > 100
 
-        weak!   if score < 35
-        good!   if score >= 35 && score < 70
+        weak! if score < 35
+        good! if score >= 35 && score < 70
         strong! if score >= 70
       end
 
@@ -221,12 +221,12 @@ module PasswordStrength
     def contain_invalid_matches? # :nodoc:
       return false unless exclude
       regex = exclude
-      regex = /#{exclude.collect {|i| Regexp.escape(i)}.join("|")}/ if exclude.kind_of?(Array)
+      regex = /#{exclude.collect { |i| Regexp.escape(i) }.join("|")}/ if exclude.is_a?(Array)
       password.to_s =~ regex
     end
 
     def contain_invalid_repetion?
-      char = password.to_s.chars.first
+      char = password.to_s[0]
       return unless char
       regex = /^#{Regexp.escape(char)}+$/i
       password.to_s =~ regex

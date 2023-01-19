@@ -8,7 +8,7 @@ class User
   end
 
   def update(attributes = {})
-    attributes.each {|name, value| public_send "#{name}=", value }
+    attributes.each { |name, value| public_send "#{name}=", value }
     valid?
   end
 end
