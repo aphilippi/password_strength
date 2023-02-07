@@ -21,4 +21,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake"
   s.add_development_dependency "minitest"
   s.add_development_dependency "minitest-utils"
+  s.add_development_dependency "ruby_audit"
+  s.add_development_dependency "spektr"
 end
