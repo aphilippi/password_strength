@@ -1,4 +1,8 @@
 source "https://rubygems.org"
 gemspec
 
-gem "standard", group: [:development, :test]
+group :development, :test do
+  gem "standard"
+  gem "ruby_audit"
+  gem "spektr"
+end
