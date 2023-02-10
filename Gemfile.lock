@@ -32,7 +32,7 @@ GEM
     minitest-utils (0.4.8)
       minitest
     parallel (1.22.1)
-    parser (3.2.0.0)
+    parser (3.2.1.0)
       ast (~> 2.4.1)
     pastel (0.8.0)
       tty-color (~> 0.5)
@@ -76,7 +76,7 @@ GEM
       tty-spinner
       tty-table
       zeitwerk (>= 2.6)
-    standard (1.23.0)
+    standard (1.24.0)
       language_server-protocol (~> 3.17.0.2)
       rubocop (= 1.44.1)
       rubocop-performance (= 1.15.2)
@@ -102,7 +102,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
     unicode_utils (1.4.0)
-    zeitwerk (2.6.6)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   x86_64-darwin-16
