@@ -1,3 +1,7 @@
+# To use simplecov, do this: COVERAGE=true rake
+require 'simplecov'
+SimpleCov.start if ENV['COVERAGE']
+
 ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile", __FILE__)
 require "bundler/setup"
 

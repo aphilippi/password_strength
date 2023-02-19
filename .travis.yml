@@ -1,6 +1,7 @@
 language: ruby
 before_install: gem update --system
-script: "bundle exec rake test"
+script: "bundle exec COVERAGE='yes' rake test"
+
 cache: bundler
 rvm:
   - '3.2'

@@ -1,5 +1,6 @@
 pkg
-coverage
+/coverage/
+/coverage.data
 doc
 /node_modules
 *.log
